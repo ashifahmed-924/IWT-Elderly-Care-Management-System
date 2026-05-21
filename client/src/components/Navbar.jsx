@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -21,8 +22,12 @@ const Navbar = () => {
     <nav className="border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-600 text-lg font-bold text-white">
-            EC
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg">
+            <img
+              src={logo}
+              alt="ElderCare logo"
+              className="h-full w-full scale-[2] object-contain"
+            />
           </span>
           <span className="text-lg font-bold text-slate-800">ElderCare</span>
         </Link>

@@ -1,28 +1,34 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
+import hero1 from '../assets/hero1.jpg';
+import card1 from '../assets/card1.jpg';
+import card2 from '../assets/card2.jpg';
+import card3 from '../assets/card3.jpg';
+import card4 from '../assets/card4.jpg';
+import card5 from '../assets/card5.jpg';
 
 const Home = () => {
   const { user } = useAuth();
 
   const features = [
     {
-      icon: '👴',
+      image: card1,
       title: 'Elder Profile Management',
       desc: 'Elderly users can view and update profiles, health details, and appointments.',
     },
     {
-      icon: '🩺',
+      image: card2,
       title: 'Caregiver Support',
       desc: 'Caregivers track assigned elders, update health status, and add care notes.',
     },
     {
-      icon: '📅',
+      image: card3,
       title: 'Appointment Scheduling',
       desc: 'Admins manage appointments between elders and caregivers seamlessly.',
     },
     {
-      icon: '🔒',
+      image: card4,
       title: 'Secure Access',
       desc: 'JWT authentication with role-based access for Admin, Caregiver, and Elderly.',
     },
@@ -30,12 +36,19 @@ const Home = () => {
 
   return (
     <Layout>
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-800 px-8 py-16 text-white shadow-lg">
+      <section className="relative overflow-hidden rounded-2xl px-8 py-16 text-white shadow-lg">
+        <img
+          src={hero1}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full scale-100 object-cover blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-slate-900/50" />
         <div className="relative z-10 max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl">
             Compassionate Elder Care Management
           </h1>
-          <p className="mt-4 text-lg text-primary-100">
+          <p className="mt-4 text-lg text-white/90 drop-shadow-sm">
             A modern platform connecting elderly users, caregivers, and administrators
             for coordinated health monitoring and appointment management.
           </p>
@@ -71,8 +84,6 @@ const Home = () => {
             )}
           </div>
         </div>
-        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/10" />
-        <div className="absolute -bottom-16 right-20 h-48 w-48 rounded-full bg-white/5" />
       </section>
 
       <section className="mt-16">
@@ -82,26 +93,46 @@ const Home = () => {
         </p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
-            <div key={f.title} className="card text-center transition hover:shadow-md">
-              <span className="text-4xl">{f.icon}</span>
-              <h3 className="mt-4 font-semibold text-slate-800">{f.title}</h3>
-              <p className="mt-2 text-sm text-slate-500">{f.desc}</p>
+            <div
+              key={f.title}
+              className="relative min-h-[220px] overflow-hidden rounded-xl border border-slate-200 p-6 shadow-sm transition hover:shadow-md"
+            >
+              <img
+                src={f.image}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 h-full w-full scale-105 object-cover blur-[2px]"
+              />
+              <div className="absolute inset-0 bg-slate-900/50" />
+              <div className="relative z-10 flex h-full flex-col justify-center text-center">
+                <h3 className="font-semibold text-white drop-shadow-sm">{f.title}</h3>
+                <p className="mt-2 text-sm text-white/90 drop-shadow-sm">{f.desc}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mt-16 rounded-2xl border border-slate-200 bg-white p-8 text-center">
-        <h2 className="text-xl font-bold text-slate-800">Three Role-Based Portals</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {['Admin', 'Caregiver', 'Elderly User'].map((role) => (
-            <div
-              key={role}
-              className="rounded-xl bg-slate-50 px-4 py-6 font-medium text-slate-700"
-            >
-              {role}
-            </div>
-          ))}
+      <section className="relative mt-16 overflow-hidden rounded-2xl border border-slate-200 p-8 text-center shadow-lg">
+        <img
+          src={card5}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full scale-105 object-cover blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-slate-900/50" />
+        <div className="relative z-10">
+          <h2 className="text-xl font-bold text-white drop-shadow-sm">Three Role-Based Portals</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {['Admin', 'Caregiver', 'Elderly User'].map((role) => (
+              <div
+                key={role}
+                className="rounded-xl border border-white/30 bg-white/20 px-4 py-6 font-medium text-white backdrop-blur-sm"
+              >
+                {role}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </Layout>
