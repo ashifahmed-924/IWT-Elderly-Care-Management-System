@@ -7,4 +7,17 @@ define('DB_CHARSET', 'utf8mb4');
 
 define('APP_NAME', 'ElderCare');
 define('BASE_PATH', dirname(__DIR__));
-define('PUBLIC_URL', '/');
+
+// Base URL for assets, links, and redirects (must end with /)
+if (!defined('PUBLIC_URL')) {
+    if (php_sapi_name() === 'cli') {
+        define('PUBLIC_URL', '/eldercare/public/');
+    } else {
+        $script = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+        if (preg_match('#^(.*?/public)/#', $script, $m)) {
+            define('PUBLIC_URL', $m[1] . '/');
+        } else {
+            define('PUBLIC_URL', rtrim(dirname($script), '/') . '/');
+        }
+    }
+}
