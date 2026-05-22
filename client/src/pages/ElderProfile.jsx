@@ -115,7 +115,7 @@ const ElderProfile = () => {
       )}
 
       <form onSubmit={handleSubmit} className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div className="card space-y-4">
+        <div className="caregiver-panel space-y-4">
           <h2 className="text-lg font-semibold">Personal Details</h2>
           <div>
             <label className="label">Date of Birth</label>
@@ -151,7 +151,7 @@ const ElderProfile = () => {
           </button>
         </div>
 
-        <div className="card space-y-4">
+        <div className="caregiver-panel space-y-4">
           <h2 className="text-lg font-semibold">Health Details</h2>
           <div>
             <label className="label">Allergies (comma-separated)</label>
@@ -182,7 +182,7 @@ const ElderProfile = () => {
           </div>
         </div>
 
-        <div className="card space-y-4 lg:col-span-2">
+        <div className="caregiver-panel space-y-4 lg:col-span-2">
           <h2 className="text-lg font-semibold">Emergency Contact</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
@@ -217,7 +217,7 @@ const ElderProfile = () => {
       </form>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div className="card">
+        <div className="caregiver-panel">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">My Appointments</h2>
             <Link to="/appointments" className="text-sm text-primary-600 hover:underline">
@@ -231,7 +231,7 @@ const ElderProfile = () => {
               {appointments.slice(0, 5).map((a) => (
                 <li
                   key={a._id}
-                  className="rounded-lg border border-slate-100 p-3 text-sm"
+                  className="caregiver-panel-item"
                 >
                   <p className="font-medium">{a.title}</p>
                   <p className="text-slate-500">
@@ -246,7 +246,7 @@ const ElderProfile = () => {
           )}
         </div>
 
-        <div className="card">
+        <div className="caregiver-panel">
           <h2 className="mb-4 text-lg font-semibold">Recent Health Records</h2>
           {healthRecords.length === 0 ? (
             <p className="text-sm text-slate-500">No health records yet.</p>
@@ -255,7 +255,7 @@ const ElderProfile = () => {
               {healthRecords.slice(0, 5).map((r) => (
                 <li
                   key={r._id}
-                  className="rounded-lg border border-slate-100 p-3 text-sm"
+                  className="caregiver-panel-item"
                 >
                   <p className="text-slate-500">
                     {new Date(r.recordDate).toLocaleDateString()} — by{' '}

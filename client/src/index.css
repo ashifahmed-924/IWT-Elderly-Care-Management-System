@@ -24,6 +24,18 @@
   .card {
     @apply rounded-xl border border-slate-200 bg-white p-6 shadow-sm;
   }
+  .dashboard-panel {
+    @apply rounded-xl border bg-white p-6 shadow-sm;
+    border-color: oklch(72.3% 0.014 214.4);
+  }
+  .caregiver-panel {
+    @apply rounded-xl border bg-white p-6 shadow-sm;
+    border-color: oklch(55.6% 0 0);
+  }
+  .caregiver-panel-item {
+    @apply rounded-lg border p-3 text-sm;
+    border-color: oklch(55.6% 0 0);
+  }
   .label {
     @apply mb-1 block text-sm font-medium text-slate-700;
   }

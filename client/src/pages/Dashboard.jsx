@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { FaUserShield } from 'react-icons/fa6';
+import { MdOutlineElderlyWoman, MdOutlineHealthAndSafety } from 'react-icons/md';
+import { BsCalendar2DateFill } from 'react-icons/bs';
 import Layout from '../components/Layout';
 import StatCard from '../components/StatCard';
 import Alert from '../components/Alert';
@@ -81,18 +84,28 @@ const Dashboard = () => {
       <Alert type="success" message={success} onClose={() => setSuccess('')} />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Total Users" value={stats?.totalUsers ?? 0} icon="👥" />
-        <StatCard title="Elderly Users" value={stats?.elders ?? 0} icon="👴" color="green" />
-        <StatCard title="Caregivers" value={stats?.caregivers ?? 0} icon="🩺" color="amber" />
+        <StatCard title="Total Users" value={stats?.totalUsers ?? 0} icon={<FaUserShield />} />
+        <StatCard
+          title="Elderly Users"
+          value={stats?.elders ?? 0}
+          icon={<MdOutlineElderlyWoman />}
+          color="green"
+        />
+        <StatCard
+          title="Caregivers"
+          value={stats?.caregivers ?? 0}
+          icon={<MdOutlineHealthAndSafety />}
+          color="amber"
+        />
         <StatCard
           title="Appointments"
           value={stats?.appointments ?? 0}
-          icon="📅"
+          icon={<BsCalendar2DateFill />}
           color="purple"
         />
       </div>
 
-      <div className="mt-8 card">
+      <div className="dashboard-panel mt-8">
         <h2 className="text-lg font-semibold">Assign Caregiver to Elder</h2>
         <form onSubmit={handleAssign} className="mt-4 grid gap-4 sm:grid-cols-3">
           <select
@@ -129,7 +142,7 @@ const Dashboard = () => {
         </form>
       </div>
 
-      <div className="mt-8 card overflow-x-auto">
+      <div className="dashboard-panel mt-8 overflow-x-auto">
         <h2 className="mb-4 text-lg font-semibold">User Management</h2>
         <table className="w-full min-w-[600px] text-left text-sm">
           <thead>

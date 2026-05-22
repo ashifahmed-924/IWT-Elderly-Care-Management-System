@@ -7,9 +7,9 @@ const StatCard = ({ title, value, icon, color = 'primary' }) => {
   };
 
   return (
-    <div className="card flex items-center gap-4">
+    <div className="dashboard-panel flex items-center gap-4">
       <div
-        className={`flex h-12 w-12 items-center justify-center rounded-xl text-xl ${colors[color]}`}
+        className={`flex h-12 w-12 items-center justify-center rounded-xl text-2xl ${colors[color]}`}
       >
         {icon}
       </div>

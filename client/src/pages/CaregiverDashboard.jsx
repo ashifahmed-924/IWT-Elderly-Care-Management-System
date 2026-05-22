@@ -121,12 +121,12 @@ const CaregiverDashboard = () => {
       <Alert type="success" message={success} onClose={() => setSuccess('')} />
 
       {elders.length === 0 ? (
-        <div className="card mt-8 text-center text-slate-500">
+        <div className="caregiver-panel mt-8 text-center text-slate-500">
           No elders assigned to you yet. Contact an admin for assignments.
         </div>
       ) : (
         <div className="mt-8 grid gap-6 lg:grid-cols-4">
-          <div className="card lg:col-span-1">
+          <div className="caregiver-panel lg:col-span-1">
             <h2 className="mb-4 font-semibold">Assigned Elders</h2>
             <ul className="space-y-2">
               {elders.map((elder) => (
@@ -157,7 +157,7 @@ const CaregiverDashboard = () => {
 
           {selectedElder && (
             <div className="space-y-6 lg:col-span-3">
-              <div className="card">
+              <div className="caregiver-panel">
                 <h2 className="text-lg font-semibold">{selectedElder.user?.name}</h2>
                 <p className="text-sm text-slate-500">{selectedElder.user?.email}</p>
                 <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
@@ -180,7 +180,7 @@ const CaregiverDashboard = () => {
                 </div>
               </div>
 
-              <form onSubmit={handleHealthUpdate} className="card space-y-4">
+              <form onSubmit={handleHealthUpdate} className="caregiver-panel space-y-4">
                 <h2 className="font-semibold">Update Health Status & Notes</h2>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
@@ -215,7 +215,7 @@ const CaregiverDashboard = () => {
                 </button>
               </form>
 
-              <form onSubmit={handleRecordSubmit} className="card space-y-4">
+              <form onSubmit={handleRecordSubmit} className="caregiver-panel space-y-4">
                 <h2 className="font-semibold">Add Health Record</h2>
                 <div className="grid gap-4 sm:grid-cols-3">
                   {[
@@ -256,7 +256,7 @@ const CaregiverDashboard = () => {
                 </button>
               </form>
 
-              <div className="card">
+              <div className="caregiver-panel">
                 <h2 className="mb-4 font-semibold">Health Record History</h2>
                 {healthRecords.length === 0 ? (
                   <p className="text-sm text-slate-500">No records yet.</p>
@@ -265,7 +265,7 @@ const CaregiverDashboard = () => {
                     {healthRecords.map((r) => (
                       <li
                         key={r._id}
-                        className="rounded-lg border border-slate-100 p-3 text-sm"
+                        className="caregiver-panel-item"
                       >
                         <p className="font-medium">
                           {new Date(r.recordDate).toLocaleString()}
