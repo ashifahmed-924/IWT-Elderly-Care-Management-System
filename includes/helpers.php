@@ -1,5 +1,6 @@
 <?php
 
+// Escape output before printing in HTML (XSS protection)
 function e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
@@ -26,6 +27,7 @@ function getFlash(): ?array
     return null;
 }
 
+// CSRF token for POST forms
 function csrfToken(): string
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -77,6 +79,7 @@ function canAccessElder(array $user, int $elderId, ?int $elderUserId, ?int $assi
     return false;
 }
 
+// Update elder's caregiver and keep caregiver_elders table in sync
 function assignCaregiverToElder(PDO $pdo, int $caregiverId, int $elderId): void
 {
     $stmt = $pdo->prepare('SELECT assigned_caregiver_id FROM elders WHERE id = ?');
@@ -86,6 +89,7 @@ function assignCaregiverToElder(PDO $pdo, int $caregiverId, int $elderId): void
         throw new RuntimeException('Elder not found');
     }
 
+    // Remove old assignment link if reassigning
     if ($elder['assigned_caregiver_id']) {
         $pdo->prepare('DELETE FROM caregiver_elders WHERE caregiver_id = ? AND elder_id = ?')
             ->execute([$elder['assigned_caregiver_id'], $elderId]);

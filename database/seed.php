@@ -8,6 +8,7 @@ require_once __DIR__ . '/../includes/db.php';
 $pdo = getDb();
 $password = password_hash('123456', PASSWORD_BCRYPT);
 
+// Clear tables for fresh demo data
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 $pdo->exec('TRUNCATE TABLE health_records');
 $pdo->exec('TRUNCATE TABLE appointments');

@@ -17,6 +17,7 @@ if (!$elder || (int) $elder['assigned_caregiver_id'] !== (int) $user['id']) {
     redirect('caregiver/dashboard.php');
 }
 
+// Insert new vitals record for the elder
 $stmt = $pdo->prepare('INSERT INTO health_records (elder_id, blood_pressure, heart_rate, temperature, weight, blood_sugar, oxygen_level, notes, recorded_by) VALUES (?,?,?,?,?,?,?,?,?)');
 $stmt->execute([
     $elderId,

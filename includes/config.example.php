@@ -8,7 +8,7 @@ define('DB_CHARSET', 'utf8mb4');
 define('APP_NAME', 'ElderCare');
 define('BASE_PATH', dirname(__DIR__));
 
-// Base URL for assets, links, and redirects (must end with /)
+// Auto-detect base path so CSS/JS work in subfolders like /eldercare/public/
 if (!defined('PUBLIC_URL')) {
     if (php_sapi_name() === 'cli') {
         define('PUBLIC_URL', '/eldercare/public/');

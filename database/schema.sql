@@ -1,3 +1,4 @@
+-- ElderCare database schema (import in phpMyAdmin or MySQL CLI)
 CREATE DATABASE IF NOT EXISTS eldercare_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE eldercare_db;
 

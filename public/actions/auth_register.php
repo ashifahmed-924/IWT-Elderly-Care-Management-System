@@ -27,6 +27,7 @@ if ($password !== $confirm) {
     redirect('register.php');
 }
 
+// Admin is created via seed only, not public signup
 if ($role === 'admin') {
     flash('error', 'Admin accounts cannot be created via registration.');
     redirect('register.php');
@@ -50,11 +51,12 @@ if ($check->fetch()) {
     redirect('register.php');
 }
 
-$hash = password_hash($password, PASSWORD_BCRYPT);
+$hash = password_hash($password, PASSWORD_BCRYPT); // never store plain password
 $stmt = $pdo->prepare('INSERT INTO users (name, email, password_hash, role, phone) VALUES (?, ?, ?, ?, ?)');
 $stmt->execute([$name, $email, $hash, $role, $phone ?: null]);
 $userId = (int) $pdo->lastInsertId();
 
+// Each elderly user needs a row in elders table
 if ($role === 'elderly') {
     $pdo->prepare('INSERT INTO elders (user_id) VALUES (?)')->execute([$userId]);
 }

@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 
 function getDb(): PDO
 {
-    static $pdo = null;
+    static $pdo = null; // one connection per request
     if ($pdo === null) {
         $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET;
         $pdo = new PDO($dsn, DB_USER, DB_PASS, [

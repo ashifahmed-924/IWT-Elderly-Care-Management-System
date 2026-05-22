@@ -3,7 +3,7 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/helpers.php';
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // needed for login and CSRF
 }
 
 function currentUser(): ?array
@@ -28,6 +28,7 @@ function requireLogin(): array
     return $user;
 }
 
+// Block pages if user role does not match (e.g. only admin)
 function requireRole(string ...$roles): array
 {
     $user = requireLogin();
@@ -40,6 +41,7 @@ function requireRole(string ...$roles): array
 
 function loginUser(array $user): void
 {
+    // Store logged-in user in session
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_role'] = $user['role'];
     $_SESSION['user_name'] = $user['name'];

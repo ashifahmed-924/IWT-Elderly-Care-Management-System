@@ -1,4 +1,5 @@
 <?php
+// Handles login form POST from login.php
 require_once __DIR__ . '/../../includes/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -23,6 +24,7 @@ $stmt = $pdo->prepare('SELECT id, name, email, password_hash, role, is_active FR
 $stmt->execute([strtolower($email)]);
 $user = $stmt->fetch();
 
+// Compare with hashed password from database
 if (!$user || !password_verify($password, $user['password_hash'])) {
     flash('error', 'Invalid email or password.');
     redirect('login.php');

@@ -18,7 +18,7 @@ if ($action === 'toggle') {
     $stmt = $pdo->prepare('SELECT id, role FROM users WHERE id = ?');
     $stmt->execute([$userId]);
     $u = $stmt->fetch();
-    if ($u && $u['role'] !== 'admin') {
+    if ($u && $u['role'] !== 'admin') { // do not delete admin accounts
         $pdo->prepare('DELETE FROM users WHERE id = ?')->execute([$userId]);
         flash('success', 'User removed.');
     } else {

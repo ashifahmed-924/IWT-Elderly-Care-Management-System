@@ -15,6 +15,7 @@ $stmt = $pdo->prepare('SELECT id, assigned_caregiver_id FROM elders WHERE id = ?
 $stmt->execute([$elderId]);
 $elder = $stmt->fetch();
 
+// Caregiver can only update elders assigned to them
 if (!$elder || (int) $elder['assigned_caregiver_id'] !== (int) $user['id']) {
     flash('error', 'Not assigned to this elder.');
     redirect('caregiver/dashboard.php');
