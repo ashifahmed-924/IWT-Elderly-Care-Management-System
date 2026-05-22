@@ -10,7 +10,11 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: 'Please provide all required fields' });
     }
 
-    if (!['admin', 'caregiver', 'elderly'].includes(role)) {
+    if (role === 'admin') {
+      return res.status(403).json({ message: 'Admin accounts cannot be created via registration' });
+    }
+
+    if (!['caregiver', 'elderly'].includes(role)) {
       return res.status(400).json({ message: 'Invalid role' });
     }
 

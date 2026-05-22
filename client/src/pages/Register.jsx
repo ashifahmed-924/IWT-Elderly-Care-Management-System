@@ -35,8 +35,7 @@ const Register = () => {
     try {
       const { confirmPassword, ...data } = form;
       const user = await register(data);
-      if (user.role === 'admin') navigate('/dashboard');
-      else if (user.role === 'caregiver') navigate('/caregiver-dashboard');
+      if (user.role === 'caregiver') navigate('/caregiver-dashboard');
       else navigate('/elder-profile');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
@@ -97,7 +96,6 @@ const Register = () => {
             >
               <option value="elderly">Elderly User</option>
               <option value="caregiver">Caregiver</option>
-              <option value="admin">Admin</option>
             </select>
           </div>
 
