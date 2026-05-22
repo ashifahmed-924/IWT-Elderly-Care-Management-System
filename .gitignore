@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# PHP local config
+includes/config.php
+
 # Environment variables (never commit secrets)
 .env
 .env.local
@@ -10,8 +13,6 @@ node_modules/
 # Build output
 dist/
 build/
-client/dist/
-server/dist/
 
 # Logs
 logs/

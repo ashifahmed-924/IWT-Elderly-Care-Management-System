@@ -1,0 +1,4 @@
+# Deny access to hidden files
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>

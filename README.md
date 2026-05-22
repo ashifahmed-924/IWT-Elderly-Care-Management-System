@@ -1,98 +1,110 @@
 # Elder Care Management System
 
-A full-stack MERN application for managing elderly care with role-based access for **Admin**, **Caregiver**, and **Elderly User** roles.
+A full-stack web application for managing elderly care with role-based access for **Admin**, **Caregiver**, and **Elderly User** roles.
 
 ## Features
 
-- JWT authentication (register / login)
-- **Elderly users**: view/update profile, health details, appointments
-- **Caregivers**: view assigned elders, update health status, add notes & health records
-- **Admin**: user management, caregiver assignment, appointment CRUD, dashboard stats
+- Session-based authentication (register / login / logout)
+- **Elderly users**: view and update profile, health details, appointments
+- **Caregivers**: view assigned elders, update health status, add health records
+- **Admin**: user management, caregiver assignment, appointment management, dashboard statistics
 
 ## Tech Stack
 
-| Layer    | Technology                          |
-|----------|-------------------------------------|
-| Frontend | React, Vite, Tailwind CSS, Axios    |
-| Backend  | Node.js, Express.js, Mongoose       |
-| Database | MongoDB                             |
-| Auth     | JWT (jsonwebtoken + bcryptjs)        |
+| Layer    | Technology                    |
+|----------|-------------------------------|
+| Frontend | HTML, CSS, JavaScript         |
+| Backend  | PHP 8+                        |
+| Database | MySQL                         |
+| Server   | Apache (XAMPP / WAMP / LAMP)  |
 
 ## Project Structure
 
 ```
-iwt/
-├── client/                 # React frontend
-│   └── src/
-│       ├── components/
-│       ├── context/
-│       ├── pages/
-│       └── services/
-└── server/                 # Express API (MVC)
-    ├── config/
-    ├── controllers/
-    ├── middleware/
-    ├── models/
-    └── routes/
+├── public/              # Web root (Apache DocumentRoot)
+│   ├── index.php
+│   ├── login.php
+│   ├── register.php
+│   ├── admin/
+│   ├── caregiver/
+│   ├── elderly/
+│   ├── actions/         # Form handlers
+│   └── assets/
+├── includes/            # Config, database, auth, layout
+├── database/            # schema.sql, seed.php
+└── docs/
 ```
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
-- MongoDB Atlas cluster (configured in `server/.env`) or a local MongoDB instance
+- PHP 8.0 or higher (with PDO MySQL extension)
+- MySQL 5.7+ or MariaDB
+- Apache with `mod_rewrite` optional
 
-## Setup
+## Setup (XAMPP)
 
-### 1. Backend
+### 1. Database
 
-```bash
-cd server
-npm install
-cp .env.example .env   # set your Atlas URI, username, password, and JWT_SECRET
-npm run dev
-```
-
-Server runs at **http://localhost:5000**
-
-**Seed sample data (optional):**
+1. Start **Apache** and **MySQL** in XAMPP.
+2. Open phpMyAdmin: http://localhost/phpmyadmin
+3. Import [`database/schema.sql`](database/schema.sql) or run it in the SQL tab.
+4. Seed demo data from the project root:
 
 ```bash
-npm run seed
+php database/seed.php
 ```
 
-This adds demo users, elders, appointments, and health records. All demo accounts use password `123456`.
+### 2. Configuration
 
-### 2. Frontend
+1. Copy `includes/config.example.php` to `includes/config.php` if needed.
+2. Edit database credentials in `includes/config.php`:
 
-```bash
-cd client
-npm install
-npm run dev
+```php
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'eldercare_db');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 ```
 
-App runs at **http://localhost:5173**
+### 3. Apache document root
 
-## API Endpoints
+Point your virtual host or XAMPP project folder so the **web root is the `public` directory**.
 
-| Method | Endpoint | Access |
-|--------|----------|--------|
-| POST | `/api/auth/register` | Public |
-| POST | `/api/auth/login` | Public |
-| GET | `/api/auth/me` | Authenticated |
-| GET | `/api/users` | Admin |
-| POST | `/api/users/assign-caregiver` | Admin |
-| GET | `/api/elders/profile/me` | Elderly |
-| GET | `/api/elders/assigned` | Caregiver |
-| GET/POST/PUT/DELETE | `/api/appointments` | Role-based |
-| GET/POST | `/api/health-records/:elderId` | Role-based |
+Example: copy/link project to `C:\xampp\htdocs\eldercare\` and set DocumentRoot to `.../eldercare/public`.
 
-## Usage Flow
+Or access via: `http://localhost/eldercare/public/`
 
-1. **Register** users with the desired role (Admin, Caregiver, or Elderly User).
+Adjust `PUBLIC_URL` in `includes/config.php` if the app is in a subfolder:
+
+```php
+define('PUBLIC_URL', '/eldercare/public/');
+```
+
+### 4. Open the application
+
+Visit your configured URL, e.g. `http://localhost/eldercare/public/`
+
+## Demo accounts (after seed)
+
+Password for all accounts: **123456**
+
+| Role      | Email                    |
+|-----------|--------------------------|
+| Admin     | admin@eldercare.com      |
+| Caregiver | james.care@eldercare.com |
+| Caregiver | maria.care@eldercare.com |
+| Elderly   | robert@eldercare.com     |
+| Elderly   | eleanor@eldercare.com    |
+
+Admin accounts cannot be created through the public registration form.
+
+## Usage flow
+
+1. Register as **Elderly User** or **Caregiver**, or sign in with a demo account.
 2. **Admin** assigns caregivers to elders from the dashboard.
 3. **Admin** creates appointments linking elders and caregivers.
-4. **Caregivers** update health status and add vitals/notes for assigned elders.
-5. **Elderly users** maintain their profile and view appointments/records.
+4. **Caregivers** update health status and add vitals for assigned elders.
+5. **Elderly users** maintain their profile and view appointments and health history.
 
 ## License
 
