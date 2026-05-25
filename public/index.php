@@ -51,10 +51,22 @@ $dash = $user ? dashboardUrl($user['role']) : null;
   <img src="<?= e(PUBLIC_URL) ?>assets/images/card5.jpg" alt="" aria-hidden="true">
   <div class="overlay"></div>
   <div class="inner">
-    <h2 class="page-title" style="color:#fff">Three Role-Based Portals</h2>
-    <div class="grid-3 mt-6">
-      <?php foreach (['Admin', 'Caregiver', 'Elderly User'] as $role): ?>
-        <div class="portal-pill"><?= e($role) ?></div>
+    <h2 class="page-title portals-title">Why Families Choose <?= e(APP_NAME) ?></h2>
+    <p class="portals-sub">Dedicated tools to support dignified, safe, and well-coordinated elder care at home and in the community.</p>
+    <div class="grid-3 mt-6 portals-grid">
+      <?php
+      $carePillars = [
+        ['fa-heartbeat', 'Health & Wellness Tracking', 'Monitor blood pressure, heart rate, medications, allergies, and daily health records in one secure profile.'],
+        ['fa-calendar-check-o', 'Care Visits & Appointments', 'Plan check-ups, home visits, and follow-ups so elders and caregivers stay on the same schedule.'],
+        ['fa-users', 'Trusted Care Coordination', 'Connect seniors with assigned caregivers and caring oversight — so families worry less and support feels closer.'],
+      ];
+      foreach ($carePillars as $pillar):
+      ?>
+      <div class="portal-card">
+        <span class="portal-card-icon"><i class="fa <?= e($pillar[0]) ?>" aria-hidden="true"></i></span>
+        <h3><?= e($pillar[1]) ?></h3>
+        <p><?= e($pillar[2]) ?></p>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>

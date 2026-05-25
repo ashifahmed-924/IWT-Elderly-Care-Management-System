@@ -8,7 +8,7 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 <div class="auth-card card">
   <h1 class="page-title">Create Account</h1>
-  <p class="page-sub">Join the ElderCare platform</p>
+  <p class="page-sub">Join the <?= e(APP_NAME) ?> platform</p>
   <form method="post" action="<?= e(PUBLIC_URL) ?>actions/auth_register.php" class="form-stack mt-6">
     <?= csrfField() ?>
     <div>

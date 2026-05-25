@@ -5,7 +5,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
-define('APP_NAME', 'ElderCare');
+define('APP_NAME', 'CareConnect');
 define('BASE_PATH', dirname(__DIR__));
 
 // Auto-detect base path so CSS/JS work in subfolders like /eldercare/public/
